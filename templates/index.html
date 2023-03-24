@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Architecture Visualization</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <div id="model">
+        <div class="layer" id="embedding">
+            <div class="layer-name">Embedding</div>
+            <div class="layer-details">Embeds the input words into a 100-dimensional vector space. Input length is set to the maximum sequence length.</div>
+        </div>
+        <div class="layer" id="conv1d">
+            <div class="layer-name">Conv1D</div>
+            <div class="layer-details">A 1D convolutional layer with 32 filters, a kernel size of 3, same padding, and a ReLU activation function.</div>
+        </div>
+        <div class="layer" id="maxpooling">
+            <div class="layer-name">MaxPooling1D</div>
+            <div class="layer-details">A 1D max pooling layer with a pool size of 2, reducing the spatial size of the convolutional layer output.</div>
+        </div>
+        <div class="layer" id="lstm">
+            <div class="layer-name">LSTM</div>
+            <div class="layer-details">A Long Short-Term Memory layer with 128 units to model temporal dependencies in the data.</div>
+        </div>
+        <div class="layer" id="dense">
+            <div class="layer-name">Dense</div>
+            <div class="layer-details">A fully connected output layer with 14 units and a softmax activation function for multi-class classification.</div>
+        </div>
+    </div>
+</body>
+</html>

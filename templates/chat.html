@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        #chat-container {
+            width: 400px;
+            height: 500px;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+        }
+
+        .chat-message p {
+            margin: 0;
+        }
+
+        #chat-form {
+            padding: 10px;
+            border-top: 1px solid #ced4da;
+            display: flex;
+        }
+
+        #chat-input {
+            flex: 1;
+            border: none;
+            border-radius: 3px;
+            padding: 5px;
+            outline: none;
+        }
+
+        #chat-submit {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').submit(function(e) {
+                e.preventDefault();  // Prevent the form from redirecting
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "send_message" %}',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            // Add the user message to the chat
+                            $('#chat-messages').append('<div class="chat-message"><strong>You:</strong> ' + response.message + '</div>');
+
+                            // Add the server response to the chat
+                            $('#chat-messages').append('<div class="chat-message"><strong>Bot:</strong> ' + response.bot_response + '</div>');
+
+                            // Clear the input field
+                            $('#chat-input').val('');
+                        } else {
+                            alert('An error occurred while sending the message. Please try again.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while sending the message. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-messages">
+            <!-- Chat messages will be added here -->
+        </div>
+        <form id="chat-form" method="post" action="{% url 'send_message' %}">
+            {% csrf_token %}
+            <input type="text" id="chat-input" name="message" placeholder="Type your message here..." required>
+            <button type="submit" id="chat-submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

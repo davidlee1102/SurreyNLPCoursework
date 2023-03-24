@@ -1,0 +1,5 @@
+djangorestframework==3.14.0
+django-health-check==3.17.0
+nltk==3.8.1
+spacy==3.5.1
+contractions==0.1.73
