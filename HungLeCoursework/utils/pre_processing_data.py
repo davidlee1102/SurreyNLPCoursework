@@ -29,11 +29,19 @@ def text_transform(string_text):
 
 # python -m spacy download en_core_web_sm
 # pre-processing the data by getting verb, adj, adv; because of the emotion of sentence is depends on these character
+import re
+
+
+# pre-processing the data by getting verb, adj, adv; because of the emotion of sentence is depends on these character
 def get_main_words(string_text):
     tokens = nltk.word_tokenize(string_text)
     pos_tags = nltk.pos_tag(tokens)
-    string_list = [word for word, pos in pos_tags if
-                   ((pos == 'JJ') or (pos == 'RB') or (pos == 'MD') or (pos == 'VBZ') or (pos == 'VBG'))]
+
+    pos_string = "{'JJR', 'VB', 'WP', 'WRB', 'NNS', 'JJS', 'JJ', 'RB', 'MD', 'VBZ', 'VBG', 'VBP'}"
+    words = re.findall(r"'(\w+)'", pos_string)
+
+    string_list = [token for token, tag in pos_tags if tag in words]
+
     if string_list:
         string_list = ' '.join(string_list)
         return string_list
