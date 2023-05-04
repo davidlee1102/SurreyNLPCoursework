@@ -20,8 +20,7 @@ stop_words = set(stopwords.words('english'))
 def text_transform(string_text):
     with open('HungLeCoursework/model/tokenizer.pickle', 'rb') as handle:
         loaded_tokenizer = pickle.load(handle)
-    string_text_list = []
-    string_text_list.append(string_text)
+    string_text_list = [string_text]
     sequences = loaded_tokenizer.texts_to_sequences(string_text_list)
     padded_sequences = pad_sequences(sequences, maxlen=50, padding='post', truncating='post')
     return padded_sequences
