@@ -77,3 +77,6 @@ def preprocessing_data(string_text):
     string_output = [w for w in string_output if not w in stop_words]
     string_output = " ".join(string_output)
     return string_output
+
+
+

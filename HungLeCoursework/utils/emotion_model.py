@@ -1,7 +1,9 @@
 import numpy as np
+import pandas as pd
 import tensorflow as tf
 import tensorflow_addons as tfa
 
+from datetime import datetime
 from HungLeCoursework.utils.constance_data import emotion_track_list, decode_cut_list
 from HungLeCoursework.utils.pre_processing_data import preprocessing_data, pre_processing_data_2, text_transform
 
@@ -24,3 +26,15 @@ def emotion_predict(sentence: str):
     index_max = np.argmax(sentence)
     result = emotion_track_list[decode_cut_list[index_max]]
     return result
+
+
+def user_capture(user_input, emotion_predict):
+    dataframe_capture = pd.read_csv('request_notebook/user_logs.csv')
+    user_input_logs = pd.DataFrame({
+        "user_input": [user_input],
+        "emotion_predict": [emotion_predict],
+        "time_logs": [datetime.now()],
+    })
+
+    dataframe_capture = pd.concat([dataframe_capture, user_input_logs], ignore_index=True)
+    dataframe_capture.to_csv("request_notebook/user_logs.csv", index=False)

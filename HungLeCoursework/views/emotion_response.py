@@ -33,9 +33,16 @@ def chat_view(request):
 def send_message(request):
     if request.method == 'POST':
         message = request.POST.get('message', '')
+        if not message:
+            return JsonResponse({'status': 'blank data, please check'})
 
         # Process the message here
         processed = emotion_model.emotion_predict(message)
+        try:
+            emotion_model.user_capture(message, processed)
+        except Exception as E:
+            print(E)
+
         response_data = {
             'message': message,
             'bot_response': processed,
