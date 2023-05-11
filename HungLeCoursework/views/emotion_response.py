@@ -18,7 +18,7 @@ def emotion_check(request: Request):
     data = request.data
     link_request = data.get("sentence_data", "")
     processed = emotion_model.emotion_predict(link_request)
-    a = 'ok vcl'
+    emotion_model.user_capture(link_request, processed)
     return Response(processed, status=status.HTTP_200_OK)
 
 
@@ -42,7 +42,6 @@ def send_message(request):
             emotion_model.user_capture(message, processed)
         except Exception as E:
             print(E)
-
         response_data = {
             'message': message,
             'bot_response': processed,

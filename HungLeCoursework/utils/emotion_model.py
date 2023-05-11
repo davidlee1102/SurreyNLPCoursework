@@ -28,13 +28,13 @@ def emotion_predict(sentence: str):
     return result
 
 
-def user_capture(user_input, emotion_predict):
+def user_capture(user_input, emotion_prd):
     dataframe_capture = pd.read_csv('request_notebook/user_logs.csv')
     user_input_logs = pd.DataFrame({
         "user_input": [user_input],
-        "emotion_predict": [emotion_predict],
+        "emotion_predict": [emotion_prd],
         "time_logs": [datetime.now()],
     })
-
     dataframe_capture = pd.concat([dataframe_capture, user_input_logs], ignore_index=True)
     dataframe_capture.to_csv("request_notebook/user_logs.csv", index=False)
+    print("Done")
