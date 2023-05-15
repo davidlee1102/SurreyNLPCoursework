@@ -248,7 +248,7 @@ tornado==6.2
 tox==3.28.0
 tox-travis==0.13
 tqdm==4.65.0
-typeguard==3.0.2
+typeguard
 typer==0.4.2
 typing_extensions==4.5.0
 typing-inspect==0.8.0
