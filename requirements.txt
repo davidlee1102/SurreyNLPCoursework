@@ -228,8 +228,8 @@ srsly==2.4.6
 ssort==0.11.6
 stdlib-list==0.8.0
 stevedore==5.0.0
-streamlit==1.20.0
-tensorboard==2.10.0
+streamlit
+tensorboard
 tensorboard-data-server==0.7.0
 tensorboard-plugin-wit==1.8.1
 tensorflow==2.12.*
