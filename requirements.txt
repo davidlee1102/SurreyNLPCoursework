@@ -45,7 +45,7 @@ doc8==0.11.2
 docformatter==1.5.1
 docutils==0.17.1
 domdf-python-tools==3.6.0
-en-core-web-sm
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
 entrypoints==0.4
 eradicate==2.2.0
 exceptiongroup==1.1.1
