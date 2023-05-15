@@ -144,7 +144,7 @@ mccabe==0.6.1
 mdurl==0.1.2
 --index-url https://pypi.anaconda.org/intel/simple --extra-index-url https://pypi.org/simple mkl_fft numpy==1.23.5
 --index-url https://pypi.anaconda.org/intel/simple --extra-index-url https://pypi.org/simple mkl_random numpy==1.23.5
-mkl-service==2.4.0
+--index-url https://pypi.anaconda.org/intel/simple --extra-index-url https://pypi.org/simple mkl_service numpy==1.23.5
 mr-proper==0.0.7
 multidict==6.0.2
 murmurhash==1.0.9
