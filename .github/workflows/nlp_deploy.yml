@@ -32,7 +32,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: moizmoizmoiz/surreynlpcoursework:latest
+          tags: davidlee1102/surreynlpcoursework:latest
 
       - name: Deploy to production
         uses: appleboy/ssh-action@master
@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.PRODUCTION_USERNAME }}
           password: ${{ secrets.PRODUCTION_PASSWORD }}
           script: |
-            docker pull moizmoizmoiz/surreynlpcoursework:latest
+            docker pull davidlee1102/surreynlpcoursework:latest
             docker stop app || true
             docker rm app || true
-            docker run -d --name=app -p 80:8000 username/repository-name:latest
+            docker run -d --name=app -p 80:8000 davidlee1102/surreynlpcoursework:latest
