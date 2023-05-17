@@ -12,8 +12,8 @@ def emotion_predict(sentence: str):
     lr = 1e-3
     wd = 1e-4 * lr
     model = tf.keras.models.load_model("HungLeCoursework/model/nlp_surrey_coursework_hunglenhat")
-    model.compile(loss='sparse_categorical_crossentropy',
-                  optimizer=tfa.optimizers.AdamW(learning_rate=lr, weight_decay=wd), metrics=['accuracy'])
+    # model.compile(loss='sparse_categorical_crossentropy',
+    #               optimizer=tfa.optimizers.AdamW(learning_rate=lr, weight_decay=wd), metrics=['accuracy'])
     sentence = pre_processing_data_2(sentence)
     if not sentence:
         sentence = preprocessing_data(sentence)
